@@ -85,14 +85,15 @@ def run_cpp_program():
             cwd=str(CPP_DIR),
         )
         if result.returncode != 0:
+            print(result.stderr, file=sys.stderr)
             return {
-                "error": "C++ program failed",
-                "stderr": result.stderr,
+                "error": "C++ program failed. Check server logs.",
             }, 500
         output_text = OUTPUT_PATH.read_text(encoding="utf-8") if OUTPUT_PATH.exists() else ""
         return {"output": output_text.strip()}, 200
     except Exception as ex:  # beginner-friendly single fallback
-        return {"error": str(ex)}, 500
+        print(str(ex), file=sys.stderr)
+        return {"error": "Internal server error"}, 500
 
 
 @app.route("/")
@@ -162,4 +163,4 @@ def dsa_operation():
 if __name__ == "__main__":
     init_db()
     # host 0.0.0.0 for easy local browser testing
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=False, host="0.0.0.0", port=5000)
