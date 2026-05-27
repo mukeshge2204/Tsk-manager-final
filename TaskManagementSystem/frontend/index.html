@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Task Management System</h1>
+
+    <form id="taskForm">
+      <input type="hidden" id="taskId" />
+      <input id="title" placeholder="Title" required />
+      <input id="priority" placeholder="Priority (Low/Medium/High)" required />
+      <input id="status" placeholder="Status (Pending/Done)" required />
+      <input id="deadline" type="date" required />
+      <button type="submit">Save Task</button>
+    </form>
+
+    <h2>Tasks</h2>
+    <table id="taskTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Deadline</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>DSA Operations</h2>
+    <div class="dsa-controls">
+      <select id="structure">
+        <option>Array</option>
+        <option>SinglyLinkedList</option>
+        <option>DoublyLinkedList</option>
+        <option>CircularLinkedList</option>
+        <option>Stack</option>
+        <option>Queue</option>
+        <option>Deque</option>
+        <option>CircularQueue</option>
+        <option>AVLTree</option>
+      </select>
+      <input id="operationTaskId" type="number" placeholder="Task ID for search/delete" />
+      <button onclick="runDsa('DISPLAY')" type="button">Display</button>
+      <button onclick="runDsa('SEARCH')" type="button">Search</button>
+      <button onclick="runDsa('DELETE')" type="button">Delete</button>
+      <button onclick="runDsa('MORRIS')" type="button">Morris Traversal</button>
+    </div>
+
+    <pre id="dsaOutput"></pre>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
